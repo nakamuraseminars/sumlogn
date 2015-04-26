@@ -5,11 +5,11 @@ from scipy.special import erfc
 def mmFentonWilkinson(m, s):
   """
   Implements Fenton-Wilkinson approach for sum of lognormals. 
-  Assume Z = sum Y_i, with Y_i = exp(m_i + X_i * s_i).
-  Inputs are m and s, which are the vector of means and 
-  the covariance matrix respectively, such that X ~ N(m, s).
-  Outputs mean and stdev for the single lognormal that approximates Z, 
-  that is exp(mz + W * sz) with W ~ N(mz, sz).
+  Assume L = sum L_i, with L_i = exp(Y_i).
+  Inputs are m and s, which are the vector of means and
+  the covariance matrix respectively, such that Y ~ N(m, s).
+  Outputs mean and stdev for the single lognormal that approximates L,
+  that is exp(Z) with Z ~ N(mz, sz).
   """
   # Based on Fenton-Wilkinson Approximation
   # Fenton, L.F. (1960). The sum of log-normal probability distibutions in 
@@ -46,11 +46,11 @@ def mmFentonWilkinson(m, s):
 def mmSchwartzYehHo(m, s):
   """
   Implements Schwartz-Yeh-Ho approach for sum of lognormals. 
-  Assume Z = sum Y_i, with Y_i = exp(m_i + X_i * s_i).
-  Inputs are m and s, which are the vector of means and 
-  the covariance matrix respectively, such that X ~ N(m, s).
-  Outputs mean and stdev for the single lognormal that approximates Z, 
-  that is exp(mz + W * sz) with W ~ N(mz, sz).
+  Assume L = sum L_i, with L_i = exp(Y_i).
+  Inputs are m and s, which are the vector of means and
+  the covariance matrix respectively, such that Y ~ N(m, s).
+  Outputs mean and stdev for the single lognormal that approximates L,
+  that is exp(Z) with Z ~ N(mz, sz).
   """
   # Based on Ho's Approximation for Schwartz-Yeh Approximation
   # IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, VOL. 44. NO. 4, NOVEMBER 1995 
