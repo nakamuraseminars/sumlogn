@@ -1,29 +1,21 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
-
-### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+This README documents the steps necessary to get your application up and running.
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+Download the file sumlogn.py to a directory you can access from your Python code.
 
-### Contribution guidelines ###
+You can import the files into your Python code like so
 
-* Writing tests
-* Code review
-* Other guidelines
+from sumlogn import mmFentonWilkinson, mmSchwartzYehHo
 
-### Who do I talk to? ###
+There is an example provided if the file that can be run as main.
 
-* Repo owner or admin
-* Other community or team contact
+### Acknowledgement ###
+
+This Python code relies heavily on Takaki Makino's original MatLab implementation
+
+http://www.snowelm.com/~t/doc/tips/20110902.en.html
+
+(MatLab files also included in this repository)
