@@ -1,5 +1,5 @@
-from numpy import log, exp, newaxis, sum, sqrt, matrix
-from numpy import linspace, sinh, cosh, hstack, vstack, trapz, pi
+from numpy import log, exp, newaxis, sum, sqrt, argsort, array
+from numpy import linspace, sinh, cosh, hstack, vstack, pi
 from scipy.special import erfc
 
 def mmFentonWilkinson(m, s):
@@ -79,7 +79,7 @@ def mmSchwartzYehHo(m, s):
   vval = 1 / (1+uval); 
   zval = (2 * delta) * vval * uval * cosh(xval);
 
-  idx = np.argsort(m)[::-1]
+  idx = argsort(m)[::-1]
   sortmu = m[idx]
   sortsigma = s[idx][:,idx]
 
@@ -118,7 +118,7 @@ def mmSchwartzYehHo(m, s):
     rhos = sortsigma[2:,0] / diag3; 
     rhosy = sortsigma[2:,1] / diag3; 
     newrhos = rhos + (rhosy - rhos) * (G3 / sigw2); 
-    newsig = np.array([newrhos * diag3]); 
+    newsig = array([newrhos * diag3]); 
     newsigma = vstack(( hstack(( [[sigz2]], newsig )),
                         hstack(( newsig.transpose(), sortsigma[2:,2:] )) ))
     sortmu = newmu;
@@ -128,12 +128,12 @@ def mmSchwartzYehHo(m, s):
 
 # Examples that test out the code  
 if __name__ == '__main__':
-  import numpy as np
+  import numpy 
   import matplotlib.pyplot as plt
   from scipy.stats import norm
   
-  mY = np.array([0.1, 0.2, 0.4, 0.3])
-  sY = np.diag([0.3, 0.2, 0.6, 0.5])
+  mY = numpy.array([0.1, 0.2, 0.4, 0.3])
+  sY = numpy.diag([0.3, 0.2, 0.6, 0.5])
   sY[[3,0],[0,3]] = 0.1  
   k = 4 # try k 1, 2, 3 or 4
   mY = mY[:k]
@@ -141,10 +141,10 @@ if __name__ == '__main__':
   
   for mZ, sZ in [mmFentonWilkinson(mY, sY), mmSchwartzYehHo(mY, sY)]:
     print "mZ, sZ: ", mZ, sZ 
-    rZ = exp(np.random.normal(mZ, sqrt(mZ), 10000))
-    rY = sum(exp(np.random.multivariate_normal(mY, sY, rZ.size)), axis=1)
+    rZ = exp(numpy.random.normal(mZ, sqrt(mZ), 10000))
+    rY = sum(exp(numpy.random.multivariate_normal(mY, sY, rZ.size)), axis=1)
     plt.figure()
-    x = np.linspace(-2,2,100)
+    x = linspace(-2,2,100)
     plt.hist(log(rY), bins=30, normed = 1)
     plt.plot(x,norm.pdf(x,loc=mZ,scale=sqrt(sZ)))
   plt.show()
